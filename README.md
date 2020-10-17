@@ -283,3 +283,11 @@ Run your application and check the location updates.
 
 ![Huawei location codelab application](https://raw.githubusercontent.com/salmanyaqoob/huawei-location-codelab/main/images/codelab.png)
 
+## Congratulations
+
+Well done. You have successfully completed this codelab and learned how to:
+
+-   Integrate HUAWEI Location Kit.
+-   Call the location service of HUAWEI Location Kit.
+
+For more details, please refer to the  [Development Guide](https://developer.huawei.com/consumer/en/doc/development/HMSCore-Guides/introduction-0000001050706106). If you encounter any problem during development, please refer to  [FAQs](https://developer.huawei.com/consumer/en/doc/development/HMSCore-Guides/faq-0000001050986161).
