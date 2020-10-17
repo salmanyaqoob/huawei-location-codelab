@@ -19,7 +19,7 @@ In this codelab, you will learn how to:
 
 ## Download the Location Codelab Project
 
-Download Location Codelab
+Download Huawei Location Codelab [sample-application](https://github.com/salmanyaqoob/huawei-location-codelab/blob/main/huawei-location-codelab.zip?raw=true)
 
 ## Configuring the Development Environment
 In this codelab, you need to create a project in Android Studio.
@@ -281,4 +281,5 @@ In Android Q, if your app needs to track the device location even when it runs i
 ### 7. Run Application
 Run your application and check the location updates.
 
+![Huawei location codelab application](https://raw.githubusercontent.com/salmanyaqoob/huawei-location-codelab/main/images/codelab.png)
 
