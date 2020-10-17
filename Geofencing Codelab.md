@@ -16,7 +16,7 @@ How to use location Api's to create geofencing into your Android Application.
 
 ## Download the Location Codelab Project
 
-Download Sample Location GeoFencing Codelab [sample-application](https://github.com/salmanyaqoob/huawei-location-codelab/blob/main/huawei-location-codelab.zip?raw=true)
+Download Sample Location GeoFencing Codelab. [codelab](https://github.com/salmanyaqoob/huawei-location-codelab/raw/main/geofence-codelab.zip)
 
 ### Main Configurations
 
@@ -41,12 +41,35 @@ Open the **build.gradle** file in the **app** directory.
 
 ### 2. Add GoogleLocationManager class 
 **(Step 1.2)** Add GoogleLocationManager class into your project.
-Download Google Location Manager class.
+Download [Google Location Manager](https://raw.githubusercontent.com/salmanyaqoob/huawei-location-codelab/main/GoogleLocationManager.kt) class.
 
 ### 3. Create GeofenceIntentService class  
 **(Step 1.3)** Create **GeofenceIntentService** class extend with **JobIntentService**.
 
     class GeofenceIntentService : JobIntentService() {}
+
+#### companion object method
+
+    companion object {  
+        private const val JOB_ID = 573  
+      private const val CHANNEL_ID = "channel_01"  
+      fun enqueueWork(context: Context, intent: Intent) {  
+            enqueueWork(  
+                context,  
+      GeofenceIntentService::class.java, JOB_ID, intent  
+            )  
+        }  
+    }
+
+#### getConversionString method
+    private fun getConversionString(conversionType: Int): String {  
+        return when (conversionType) {  
+            Geofence.GEOFENCE_TRANSITION_ENTER -> "You are entered to your home location"  
+      Geofence.GEOFENCE_TRANSITION_EXIT-> "You are exited to your home location"  
+      Geofence.GEOFENCE_TRANSITION_DWELL -> "You are inside your home location"  
+      else -> "No Conversion found"  
+      }  
+    }
 
 #### onHandleWork method
 
@@ -117,7 +140,8 @@ Download Google Location Manager class.
       
         // Define the notification settings.  
       builder.setSmallIcon(R.drawable.ic_launcher_foreground) // In a real app, you may want to use a library like Volley  
-     // to decode the Bitmap.  .setLargeIcon(  
+     // to decode the Bitmap.  
+       .setLargeIcon(  
                 BitmapFactory.decodeResource(  
                     resources,  
       R.drawable.ic_marker  
@@ -137,29 +161,6 @@ Download Google Location Manager class.
       builder.setAutoCancel(true)  
         assert(mNotificationManager != null)  
         mNotificationManager.notify(0, builder.build())  
-    }
-
-#### getConversionString method
-    private fun getConversionString(conversionType: Int): String {  
-        return when (conversionType) {  
-            Geofence.GEOFENCE_TRANSITION_ENTER -> "You are entered to your home location"  
-      Geofence.GEOFENCE_TRANSITION_EXIT-> "You are exited to your home location"  
-      Geofence.GEOFENCE_TRANSITION_DWELL -> "You are inside your home location"  
-      else -> "No Conversion found"  
-      }  
-    }
-
-#### companion object method
-
-    companion object {  
-        private const val JOB_ID = 573  
-      private const val CHANNEL_ID = "channel_01"  
-      fun enqueueWork(context: Context, intent: Intent) {  
-            enqueueWork(  
-                context,  
-      GeofenceIntentService::class.java, JOB_ID, intent  
-            )  
-        }  
     }
 
 ### 4. Create GeoFenceBroadcastReceiver Broadcast Receiver  
