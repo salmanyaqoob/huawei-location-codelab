@@ -15,7 +15,7 @@ import com.huawei.hmf.tasks.Task
 import com.huawei.hms.common.ApiException
 import com.huawei.hms.common.ResolvableApiException
 import com.huawei.hms.location.*
-import com.huawei.hms.maps.model.LatLng
+// import com.huawei.hms.maps.model.LatLng
 
 /**
  * Wrapper class for handling Location related methods
@@ -265,11 +265,8 @@ class HuaweiLocationManager constructor(private val context : Context) {
             if (lastKnowLocation == null) {
                 Log.d(TAG, "LocationKit -> Last Known Location is empty")
             } else {
-                val currentLatLng = LatLng(
-                    lastKnowLocation.latitude,
-                    lastKnowLocation.longitude
-                )
-                Log.d(TAG, "LocationKit -> Last Known Location: $currentLatLng")
+                
+                Log.d(TAG, "LocationKit -> Last Known Location: ${lastKnowLocation.latitude}, ${lastKnowLocation.longitude}")
             }
             // Notify
             onSuccess?.invoke(lastKnowLocation)
@@ -346,11 +343,8 @@ class HuaweiLocationManager constructor(private val context : Context) {
     ): LocationCallback {
         return object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult) {
-                val currentLatLng = LatLng(
-                    locationResult.lastLocation.latitude,
-                    locationResult.lastLocation.longitude
-                )
-                Log.d(TAG, "LocationKit -> currentLatLng: $currentLatLng")
+                
+                Log.d(TAG, "LocationKit -> currentLatLng: ${lastKnowLocation.latitude}, ${lastKnowLocation.longitude}")
                 // Notify
                 onSuccess?.invoke(locationResult.lastLocation)
             }

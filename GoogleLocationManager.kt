@@ -1,4 +1,4 @@
-package com.android.maplocationkotlin.utils
+package com.android.geofencedemo.utils
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -19,13 +19,13 @@ import com.google.android.gms.tasks.Task
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
-import com.google.android.gms.maps.model.LatLng
+
 
 /**
  * Wrapper class for handling Location related methods
  */
 class GoogleLocationManager constructor(private val context : Context) {
-    val TAG = "Huawei_Location"
+    val TAG = "Google_Location"
     //region vars
     private val mFusedLocationProviderClient: FusedLocationProviderClient by lazy {
         LocationServices.getFusedLocationProviderClient(context)
@@ -271,11 +271,7 @@ class GoogleLocationManager constructor(private val context : Context) {
             if (lastKnowLocation == null) {
                 Log.d(TAG, "LocationKit -> Last Known Location is empty")
             } else {
-                val currentLatLng = LatLng(
-                    lastKnowLocation.latitude,
-                    lastKnowLocation.longitude
-                )
-                Log.d(TAG, "LocationKit -> Last Known Location: $currentLatLng")
+                Log.d(TAG, "LocationKit -> Last Known Location: ${lastKnowLocation.latitude}, ${lastKnowLocation.longitude}")
             }
             // Notify
             onSuccess?.invoke(lastKnowLocation)
@@ -352,11 +348,7 @@ class GoogleLocationManager constructor(private val context : Context) {
     ): LocationCallback {
         return object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult) {
-                val currentLatLng = LatLng(
-                    locationResult.lastLocation.latitude,
-                    locationResult.lastLocation.longitude
-                )
-                Log.d(TAG, "LocationKit -> currentLatLng: $currentLatLng")
+                Log.d(TAG, "LocationKit -> currentLatLng: ${ locationResult.lastLocation.latitude}, ${locationResult.lastLocation.longitude}")
                 // Notify
                 onSuccess?.invoke(locationResult.lastLocation)
             }
@@ -370,4 +362,5 @@ class GoogleLocationManager constructor(private val context : Context) {
             }
         }
     }
+
 }
